@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f5f2eb" />
+    <title>每日健康</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow" id="dateLabel"></p>
+          <h1>今天，也照顾好自己</h1>
+        </div>
+        <button class="avatar" aria-label="健康概览">
+          <span>安</span>
+        </button>
+      </header>
+
+      <section class="progress-card" aria-label="今日进度">
+        <div class="ring" id="progressRing">
+          <div class="ring-center">
+            <strong id="progressValue">0/3</strong>
+            <span>今日完成</span>
+          </div>
+        </div>
+        <div class="progress-copy">
+          <p class="section-kicker">每日计划</p>
+          <h2 id="progressTitle">慢慢来，先完成一件</h2>
+          <p id="progressHint">规律的小事，也会带来很大的改变。</p>
+          <div class="streak"><span>✦</span><strong id="streakValue">0</strong> 天连续坚持</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">TODAY</p>
+            <h2>今日任务</h2>
+          </div>
+          <span class="muted" id="completionText">还未开始</span>
+        </div>
+
+        <div class="task-list">
+          <button class="task-card medicine" data-task="medicine">
+            <span class="task-icon" aria-hidden="true">💊</span>
+            <span class="task-copy">
+              <strong>按时吃药</strong>
+              <small>今天的药物已经准备好了吗？</small>
+            </span>
+            <span class="checkmark" aria-hidden="true">✓</span>
+          </button>
+
+          <button class="task-card exercise" data-task="exercise">
+            <span class="task-icon" aria-hidden="true">⌁</span>
+            <span class="task-copy">
+              <strong>完成运动</strong>
+              <small>散步、拉伸或喜欢的运动都可以</small>
+            </span>
+            <span class="checkmark" aria-hidden="true">✓</span>
+          </button>
+
+          <button class="task-card weight" id="weightTask">
+            <span class="task-icon" aria-hidden="true">⚖</span>
+            <span class="task-copy">
+              <strong>记录体重</strong>
+              <small id="weightTaskHint">记录今天身体的变化</small>
+            </span>
+            <span class="checkmark" aria-hidden="true">✓</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="section insight-section">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">TREND</p>
+            <h2>最近体重</h2>
+          </div>
+          <strong class="current-weight" id="currentWeight">-- kg</strong>
+        </div>
+        <div class="chart-card">
+          <div class="chart" id="weightChart" aria-label="近七天体重趋势"></div>
+          <div class="chart-empty" id="chartEmpty">记录体重后，这里会出现趋势</div>
+        </div>
+      </section>
+    </main>
+
+    <div class="sheet-backdrop" id="sheetBackdrop" hidden></div>
+    <section class="bottom-sheet" id="weightSheet" aria-modal="true" role="dialog" hidden>
+      <div class="sheet-handle"></div>
+      <button class="sheet-close" id="sheetClose" aria-label="关闭">×</button>
+      <p class="section-kicker">TODAY'S WEIGHT</p>
+      <h2>记录今天的体重</h2>
+      <p class="sheet-subtitle">每天在相近时间记录，趋势会更准确。</p>
+      <label class="weight-input">
+        <input id="weightInput" type="number" inputmode="decimal" min="20" max="300" step="0.1" placeholder="65.0" />
+        <span>kg</span>
+      </label>
+      <button class="primary-button" id="saveWeight">保存记录</button>
+    </section>
+
+    <div class="toast" id="toast" role="status"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
